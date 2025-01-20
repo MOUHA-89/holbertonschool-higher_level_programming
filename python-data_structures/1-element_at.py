@@ -5,5 +5,3 @@ def element_at(my_list, idx):
         return None
     # Return the element at the specified index
     return my_list(idx)
-
-
