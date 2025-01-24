@@ -1,31 +1,33 @@
-Fonction add_integer
-==================
+def add_integer(a, b=98):
+    """
+    Adds two integers.
 
-Cette fonction permet d'additionner deux nombres entiers.
+    Args:
+    a (int or float): The first number.
+    b (int or float, optional): The second number. Defaults to 98.
 
-Prototype:
-----------
-def add_integer(a, b=98)
+    Returns:
+    int: The sum of a and b.
 
-Paramètres:
------------
-- a : premier nombre (int ou float)
-- b : deuxième nombre (int ou float, optionnel, défaut = 98)
+    Raises:
+    TypeError: If a or b is not an integer or float.
 
-Comportement:
--------------
-- Convertit les nombres en entiers
-- Retourne la somme des deux nombres
-- Lève une exception TypeError si les arguments ne sont pas des nombres
-
-Exemples:
----------
-add_integer(1, 2)     → Retourne 3
-add_integer(100, -2)  → Retourne 98
-add_integer(2)        → Retourne 100
-add_integer(100.3, -2) → Retourne 98
-
-Gestion des erreurs:
--------------------
-- Si a ou b n'est pas un nombre : TypeError
-- Si a ou b est None : TypeError
+    >>> add_integer(1, 2)
+    3
+    >>> add_integer(100, -2)
+    98
+    >>> add_integer(2)
+    100
+    >>> add_integer(100.3, -2)
+    98
+    >>> add_integer(-98, 1)
+    -97
+    >>> add_integer(4, "School")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+    >>> add_integer(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+    """
