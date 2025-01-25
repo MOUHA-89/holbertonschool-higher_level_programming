@@ -1,33 +1,40 @@
-def text_indentation(text):
-    """
-    Prints a text with 2 new lines after each of these characters: ., ? and :
+   >>> text_indentation = __import__('5-text_indentation').text_indentation
 
-    Args:
-    text (str): The input text to be formatted.
-
-    Raises:
-    TypeError: If the input is not a string.
-
-    >>> text_indentation("Hello. How are you? I'm fine: thank you.")
-    Hello.
+    >>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
+Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
+Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. \
+Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
+rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
+stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
+cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
+beatiorem! Iam ruinas videres")
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.$
     <BLANKLINE>
-    How are you?
+    Quonam modo?$
     <BLANKLINE>
-    I'm fine:
+    Utrum igitur tibi litteram videor an totas paginas commovere?$
     <BLANKLINE>
-    thank you.
-    >>> text_indentation("No punctuation")
-    No punctuation
-    >>> text_indentation("Spaces.   A lot    of    spaces")
-    Spaces.
+    Non autem hoc:$
+    <BLANKLINE> 
+    igitur ne illud quidem.$
     <BLANKLINE>
-    A lot    of    spaces
-    >>> text_indentation("  Leading.Trailing  ")
-    Leading.
+    Fortasse id optimum, sed ubi illud:$
     <BLANKLINE>
-    Trailing
-    >>> text_indentation(12345)
+    Plus semper voluptatis?$
+    <BLANKLINE>
+    Teneo, inquit, finem illi videri nihil dolere.$
+    <BLANKLINE>
+    Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.$
+    <BLANKLINE>
+    Si id dicis, vicimus.$
+    <BLANKLINE>
+    Inde sermone vario sex illa a Dipylo stadia confecimus.$
+    <BLANKLINE>
+    Sin aliud quid voles, postea.$
+    <BLANKLINE>
+    Quae animi affectio suum cuique tribuens atque hanc, quam dico.$
+    
+    >>> text_indentation(123456)
     Traceback (most recent call last):
-        ...
     TypeError: text must be a string
-    """
