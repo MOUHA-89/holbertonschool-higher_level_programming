@@ -1,26 +1,43 @@
-def say_my_name(first_name, last_name=""):
-    """
-    Print 'My name is <first_name> <last_name>'
-
-    Args:
-    first_name (str): The first name
-    last_name (str, optional): The last name. Defaults to "".
-
-    Raises:
-    TypeError: If first_name or last_name is not a string
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
 
     >>> say_my_name("John", "Smith")
-    My name is John Smith
+    My name is John Smith$
+
     >>> say_my_name("Walter", "White")
-    My name is Walter White
+    My name is Walter White$
+
     >>> say_my_name("Bob")
-    My name is Bob
-    >>> say_my_name(12, "White")
-    Traceback (most recent call last):
-        ...
-    TypeError: first_name must be a string
-    >>> say_my_name("Bob", 42)
-    Traceback (most recent call last):
-        ...
-    TypeError: last_name must be a string
+    My name is Bob $
+
+    input error
+    ("first_name", last_name) =( "", "")
+    ("first_name", last_name) =(number, "")
+    ("first_name", last_name) =(numbers, "")
+    ("first_name", last_name) =('char', "")
+    ("first_name", last_name) =( number, number)
+    ("first_name", last_name) =(numbers, numbers)
+    ("first_name", last_name) =('char', 'char')
+
+    >>> say_my_name("", last_name="")
+    Traceback (most recent last call)
+    TypeError : first_name must be a string or last_name must be a string
+
+    >>> say_my_name('char', last_name="") 
+    Traceback (most recent last call)
+    TypeError : first_name must be a string or last_name must be a string
+
+    >>> say_my_name(89, last_name="")  
+    Traceback (most recent last call)
+    TypeError : first_name must be a string or last_name must be a string
     
+    >>> say_my_name(89, 89)
+    Traceback (most recent last call)
+    TypeError : firstirst_name must be a string or last_name must be a string
+
+    >>> say_my_name(89, 'char')
+    Traceback (most recent last call)
+    TypeError : first_name must be a string or last_name must be a string
+
+    >>>  say_my_name('char', 'char')
+    Traceback (most recent last call)
+    TypeError : first_name must be a string or last_name must be a string
