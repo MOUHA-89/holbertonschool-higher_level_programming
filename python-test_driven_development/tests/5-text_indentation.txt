@@ -1,0 +1,33 @@
+def text_indentation(text):
+    """
+    Prints a text with 2 new lines after each of these characters: ., ? and :
+
+    Args:
+    text (str): The input text to be formatted.
+
+    Raises:
+    TypeError: If the input is not a string.
+
+    >>> text_indentation("Hello. How are you? I'm fine: thank you.")
+    Hello.
+    <BLANKLINE>
+    How are you?
+    <BLANKLINE>
+    I'm fine:
+    <BLANKLINE>
+    thank you.
+    >>> text_indentation("No punctuation")
+    No punctuation
+    >>> text_indentation("Spaces.   A lot    of    spaces")
+    Spaces.
+    <BLANKLINE>
+    A lot    of    spaces
+    >>> text_indentation("  Leading.Trailing  ")
+    Leading.
+    <BLANKLINE>
+    Trailing
+    >>> text_indentation(12345)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+    """
