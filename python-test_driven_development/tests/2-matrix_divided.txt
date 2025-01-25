@@ -15,7 +15,9 @@
      empty_list = []
      empty_lists = [], [], []
      not_list = [13, [14, 0], [15, 16, 17]]
-     not_all_num = [[bref, 15, 20], [card, 5, 16], [red, 1, 2]]
+     not_all_num = [[bref, 15, 20], [car >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+    TypeError: text must be a stringd, 5, 16], [red, 1, 2]]
      diff_len = [[1, 3,], [5, 7, 9], [11, 13, 15, 17]]
 
      >>> matrix_divided(none, 3)
