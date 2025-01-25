@@ -41,4 +41,3 @@
      >>> print(matrix_divided(matrixX, 0))
      Traceback (most recent last call)
      ZeroDivisionError : division by zero
-
