@@ -1,8 +1,13 @@
-def test_add_integer(a, b = 98):
-    """
-    this module is the integer additional function" add_integer(a, b)"
+=========================
+how to use add_integer.py
+=========================
+this module define an integer additional function " add_integer(a, b=98) "
 
-    where b is optional by default its is 98.
+usage
+=====
+
+"add_integer( ...)" returns the additional of its arguments, value is the result of (a + b).
+
     
     >>> add_integer = __import__('0-add_integer').add_integer
     >>> add_integer(1, 2)
@@ -15,6 +20,10 @@ def test_add_integer(a, b = 98):
     98
     >>> add_integer(-98, 1)
     -97
+
+Error Handling
+==============
+
     >>> add_integer(4, "School")
     Traceback (most recent call last):
         ...
@@ -23,4 +32,3 @@ def test_add_integer(a, b = 98):
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
-    """
