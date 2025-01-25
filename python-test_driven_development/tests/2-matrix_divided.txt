@@ -4,7 +4,7 @@ def matrix_divided(matrix, div):
 
     Args:
     matrix (list of lists): The matrix to be divided.
-    div (int or float): The number to divide by.
+    div (int or float): The number to divide the matrix elements by.
 
     Returns:
     list of lists: A new matrix with all elements divided by div, rounded to 2 decimal places.
@@ -12,7 +12,7 @@ def matrix_divided(matrix, div):
     Raises:
     TypeError: If matrix is not a list of lists of integers/floats,
                if rows have different sizes, or if div is not a number.
-    ZeroDivisionError: If div is 0.
+    ZeroDivisionError: If div is equal to 0.
 
     >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 3)
     [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
@@ -20,28 +20,34 @@ def matrix_divided(matrix, div):
     >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 3.0)
     [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
 
-    >>> matrix_divided([[1.1, -2.2, 3.3], [4.4, 5.5, -6.6]], 2)
-    [[0.55, -1.1, 1.65], [2.2, 2.75, -3.3]]
+    >>> matrix_divided([[1.1, -2.2, 3.3], [4.4, 5.5, -6.6]], 3)
+    [[0.37, -0.73, 1.1], [1.47, 1.83, -2.2]]
+
+    >>> matrix_divided([[1, 2], [3, 4]], 2)
+    [[0.5, 1.0], [1.5, 2.0]]
 
     >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 0)
     Traceback (most recent call last):
     ...
     ZeroDivisionError: division by zero
 
-    >>> matrix_divided("not a matrix", 2)
+    >>> matrix_divided("not a matrix", 3)
     Traceback (most recent call last):
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_divided([[1, 2, 3], [4, 5]], 2)
+    >>> matrix_divided([[1, 2, 3], [4, 5, "6"]], 3)
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix_divided([[1, 2, 3], [4, 5]], 3)
     Traceback (most recent call last):
     ...
     TypeError: Each row of the matrix must have the same size
 
-    >>> matrix_divided([[1, 2, 3], [4, 5, 6]], "2")
+    >>> matrix_divided([[1, 2], [3, 4]], "3")
     Traceback (most recent call last):
     ...
     TypeError: div must be a number
     """
-    # Le code de la fonction reste inchangé
-    # ...
