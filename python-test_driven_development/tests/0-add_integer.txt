@@ -32,3 +32,11 @@ Error Handling
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
+
+        ...
+    overflowErroe: unable to convert an infinite floating point number to an integer
+    >>> add_integer(0, float('nan'))
+    Traceback (most recent last call):
+        ...
+
+    ValueError: Unable to convert float NaN to integer
