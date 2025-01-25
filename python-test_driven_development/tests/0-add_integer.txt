@@ -1,5 +1,9 @@
-def test_add_integer():
+def test_add_integer(a, b = 98):
     """
+    this module is the integer additional function" add_integer(a, b)"
+
+    where b is optional by default its is 98.
+
     >>> add_integer(1, 2)
     3
     >>> add_integer(100, -2)
