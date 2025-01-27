@@ -2,8 +2,10 @@
 """
 Python program to demonstrate
 """
+
+
 class Square:
     """
-    make None
+    nmake None
     """
     pass
