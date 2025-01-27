@@ -1,8 +1,10 @@
 #!/usr/bin/python3
-
-# Python program to demonstrate 
-# empty class
+"""
+Python program to demonstrate 
+"""
 
 class Square:
-    # make None
+    """ 
+    make None
+    """
     pass
