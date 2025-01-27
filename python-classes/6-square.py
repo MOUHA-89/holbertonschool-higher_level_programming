@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Python program to define a Square class with size, position, area, and print methods
+Python program to define a Square class with size, position, area,
+and print methods
 """
 
 
