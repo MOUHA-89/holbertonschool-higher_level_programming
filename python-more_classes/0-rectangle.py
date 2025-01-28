@@ -3,8 +3,11 @@
 this is programm python
 """
 
-class Rectangle :
+
+class Rectangle:
     """
     make None
     """
-    pass
+    def __init__(self):
+
+        pass
