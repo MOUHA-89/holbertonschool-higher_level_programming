@@ -3,7 +3,6 @@
 this is programm python
 """
 
-
 class Rectangle:
 
     """
