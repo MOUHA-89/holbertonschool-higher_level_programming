@@ -1,12 +1,12 @@
+#!/usr/bin/python3
+"""
+this is programm python
+"""
 class Rectangle:
     """
-    this is programm python
+    A class that defines a rectangle by its width and heigth
     """
-
     def __init__(self, width=0, height=0):
-        """
-        A class that defines a rectangle by its width and heigth
-        """
         self.width = width
         self.height = height
 
