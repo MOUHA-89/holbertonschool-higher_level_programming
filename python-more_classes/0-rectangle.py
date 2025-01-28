@@ -6,7 +6,7 @@ this is programm python
 
 class Rectangle:
     """
-    make None
+    A class representing a rectangle
     """
     def __init__(self):
 
