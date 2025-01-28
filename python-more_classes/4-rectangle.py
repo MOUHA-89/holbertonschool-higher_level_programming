@@ -9,9 +9,6 @@ class Rectangle:
     A class that defines a rectangle by its width and heigth
     """
     def __init__(self, width=0, height=0):
-        """
-        initialize a new rectangle insrance
-        """
         self.width = width
         self.height = height
 
@@ -48,11 +45,9 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-
         if self.__width == 0 or self.__height == 0:
             return ""
         return "\n".join(["#" * self.__width for _ in range(self.__height)])
 
     def __repr__(self):
-
         return f"Rectangle({self.__width}, {self.__height})"
