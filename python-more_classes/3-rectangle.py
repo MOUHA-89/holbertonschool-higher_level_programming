@@ -5,6 +5,7 @@ this is programm python
 
 
 class Rectangle:
+    
     """
     A class that defines a rectangle by its width and heigth
     """
