@@ -1,4 +1,13 @@
+#!/usr/bin/python3
+"""
+this is programm python
+"""
+
+
 class Rectangle:
+    """
+    A class that defines a rectangle by its width and heigth
+    """
     number_of_instances = 0
     print_symbol = "#"
 
