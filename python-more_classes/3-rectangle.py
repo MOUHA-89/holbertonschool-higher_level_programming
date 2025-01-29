@@ -52,4 +52,4 @@ class Rectangle:
 
     def __repr__(self):
 
-        return f"(<3-rectangle.Rectangle object at {hex(id(self))}>"
+        return f"<3-rectangle.Rectangle object at {hex(id(self))}>"
