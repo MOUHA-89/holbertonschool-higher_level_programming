@@ -1,17 +1,16 @@
+#!/usr/bin/python3
+"""
+python program
+"""
+
+
 def inherits_from(obj, a_class):
     """
-    Returns True if obj is an instance of a class that inherited
-    (directly or indirectly)
-    from a_class, otherwise returns False.
-
-    :param obj: The object to check
-    :param a_class: The class to compare against
-    :return: Boolean
+    this is method
     """
+    mo_type = type(obj)
 
-    obj_type = type(obj)
-
-    if obj_type is a_class:
+    if type(obj) is a_class:
         return False
-
-    return a_class in obj_type.__mro__
+    if a_class in mo_type.__mro__:
+        return True
