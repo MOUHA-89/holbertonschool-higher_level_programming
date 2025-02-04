@@ -12,4 +12,5 @@ def inherits_from(obj, a_class):
 
     if type(obj) is a_class:
         return False
-    return a_class in mo_type.__mro__
+    if a_class in mo_type.__mro__:
+        return True
