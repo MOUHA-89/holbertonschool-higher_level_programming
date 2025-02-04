@@ -1,7 +1,3 @@
-def print_sorted(self):
-"""
-this fonction sorted a list
-"""
 >>> MyList = __import__('1-my_list').MyList
 
 >>> empty_MyList = empty_mylist()
