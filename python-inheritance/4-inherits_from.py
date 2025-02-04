@@ -5,6 +5,9 @@ python program
 
 
 def inherits_from(obj, a_class):
+    """
+    this is method
+    """
     mo_type = type(obj)
 
     if type(obj) is a_class:
