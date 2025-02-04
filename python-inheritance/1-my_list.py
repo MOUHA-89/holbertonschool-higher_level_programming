@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-python programm
+python program
 """
 
 class MyList(list):
