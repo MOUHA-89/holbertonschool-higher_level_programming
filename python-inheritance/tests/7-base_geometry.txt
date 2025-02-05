@@ -1,56 +1,59 @@
- 7-base_geometry is the module
- ===========================
+=============================
+The ``7-base_geometry`` module
+=============================
 
- Using 7-base_geometry
- =====================
- importing function from module:
->>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+Using ``BaseGeometry``
+---------------------
 
-now test it:
+Import the class:
 
->>> bg = BaseGeometry()
->>> bg.integer_validator("my_int", "98")
-traceback(most recent call last)
-TypeError("my_int must be an integer")
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
->>> bg.integer_validator("", 98)
+Now test it:
 
->>> bg.integer_validator("", "98")
-traceback(most recent call last)
-TypeError("must be an integer")
+    >>> bg = BaseGeometry()
+    >>> bg.integer_validator("my_int", "22")
+    Traceback (most recent call last):
+    TypeError: my_int must be an integer
 
->>> bg.integer_validator("my_int", 0)
-traceback(most recent call last)
-ValuError("must be greater than 0")
+    >>> bg.integer_validator("", 22)
 
->>> bg.integer_validator("my_int", -1)
-traceback(most recent call last)
-TypeError("my_int must be greater than 0")
+    >>> bg.integer_validator("", "22")
+    Traceback (most recent call last):
+    TypeError:  must be an integer
 
->>> bg.integer_validator("list", [1, 2, 3])
-traceback(most recent call last)
-TypeError("list must be an integer")
+    >>> bg.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
 
- >>> bg.integer_validator("my_int")
+    >>> bg.integer_validator("my_int", 0)
+    Traceback (most recent call last):
+    ValueError: my_int must be greater than 0
+
+    >>> bg.integer_validator("list", [0, 1, 2])
+    Traceback (most recent call last):
+    TypeError: list must be an integer
+
+    >>> bg.integer_validator("my_int")
     Traceback (most recent call last):
     TypeError: integer_validator() missing 1 required positional argument: 'value'
 
- >>> bg.integer_validator()
+    >>> bg.integer_validator()
     Traceback (most recent call last):
     TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
->>> bg.integer_validator("list", True)
-traceback(most recent call last)
-TypeError("list must be an integer)
+    >>> bg.integer_validator("list", True)
+    Traceback (most recent call last):
+    TypeError: list must be an integer
 
->>> bg.integer_validator("my_int", {2, 3})
-traceback(most recent call last)
-TypeError("must be an integer")
+    >>> bg.integer_validator("my_int", {2, 1})
+    Traceback (most recent call last):
+    TypeError: my_int must be an integer
 
->>> bg.integer_validator("my_int", None)
-traceback(most recent call last)
-TypeError(" my_int must be an integer")
+    >>> bg.integer_validator("my_int", None)
+    Traceback (most recent call last):
+    TypeError: my_int must be an integer
 
->>> bg.integer_validator("my_int",(2,))
-traceback(most recent call last)
-TypeError("my_int must be an integer")
+    >>> bg.integer_validator("my_int", (2,))
+    Traceback (most recent call last):
+    TypeError: my_int must be an integer
