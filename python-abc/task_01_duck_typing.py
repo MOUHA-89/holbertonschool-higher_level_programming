@@ -1,14 +1,11 @@
-#!/usr/bin/env python3
-"""
-this is python program
-"""
+#!/usr/bin/python3
 from abc import ABC, abstractmethod
 import math
 
 
 class Shape(ABC):
     """
-    this is abstract method
+    abstract class
     """
     @abstractmethod
     def area(self):
@@ -43,16 +40,9 @@ class Rectangle(Shape):
 
 
 def shape_info(shape):
-
-    print(f"Area: {shape.area():.2f}")
-    print(f"Perimeter: {shape.perimeter():.2f}")
+    print(f"Area: {shape.area()}")
+    print(f"Perimeter: {shape.perimeter()}")
 
 
 circle = Circle(5)
 rectangle = Rectangle(4, 6)
-
-print("Circle:")
-shape_info(circle)
-
-print("\nRectangle:")
-shape_info(rectangle)
