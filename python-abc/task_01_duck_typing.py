@@ -45,4 +45,4 @@ def shape_info(shape):
 
 
 circle = Circle(5)
-rectangle = Rectangle(4, 6)
+rectangle = Rectangle(4, 7)
