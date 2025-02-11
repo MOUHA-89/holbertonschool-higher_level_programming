@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-import json
-import sys
+"""script to add all arguments to a Python list and save to a file
+"""
+from sys import argv
 
-save_to_json_file = __import__('5-save_to_json_file.py').save_to_json_file.py
-load_from_json_file = __import__('6-load_from_json_file.py').load_from_json_file.py
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
-data = ["apple", "banana", "cherry"]
-
-with open("add_item.json", "w") as file:
-    json.dump(data, file)
+try:
+    arglist = load_from_json_file("add_item.json")
+except FileNotFoundError:
+    arglist = []
+arglist += argv[1:]
+save_to_json_file(arglist, "add_item.json")
