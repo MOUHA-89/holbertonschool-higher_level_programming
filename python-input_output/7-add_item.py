@@ -1,22 +1,11 @@
 #!/usr/bin/python3
+import json
 import sys
-from os import path
 
-# Importing the required functions
-save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
+save_to_json_file = __import__('5-save_to_json_file.py').save_to_json_file.py
+load_from_json_file = __import__('6-load_from_json_file.py').load_from_json_file.py
 
-# File name where the list will be saved
-filename = "add_item.json"
+data = ["apple", "banana", "cherry"]
 
-# Load existing data if the file exists, otherwise start with an empty list
-if path.exists(filename):
-    items = load_from_json_file(filename)
-else:
-    items = []
-
-# Add all command-line arguments to the list
-items.extend(sys.argv[1:])
-
-# Save the updated list back to the file
-save_to_json_file(items, filename)
+with open("add_item.json", "w") as file:
+    json.dump(data, file)
