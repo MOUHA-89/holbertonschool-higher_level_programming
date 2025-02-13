@@ -9,7 +9,7 @@ class CustomObject:
     """
     this is a class
     """
-    def __init__(self, name: str, age: int, is_student: bool):
+    def __init__(self, name, age, is_student):
         self.name = name
         self.age = age
         self.is_student = is_student
@@ -24,6 +24,7 @@ class CustomObject:
                 pickle.dump(self, file)
         except Exception as e:
             print(f"Error serializing object: {e}")
+            return None
 
     @classmethod
     def deserialize(cls, filename: str):
