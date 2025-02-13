@@ -8,10 +8,15 @@ class CustomObject:
     """
     this is a class
     """
-    def display(self, name, age, is_student):
+    def __init__(self, name, age, is_student):
         self.name = name
         self.age = age
         self.is_student = is_student
+
+    def display(self):
+        print(f"name: {self.name}")
+        print(f"age: {self.age}")
+        print(f"is_student: {self.is_student}")
 
     def serialize(self, filename):
         """
