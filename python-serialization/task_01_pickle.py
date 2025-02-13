@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 """
-python program
+python prgram
 """
 import pickle
 
-
 class CustomObject:
     """
-    this is a class
+    this is class
     """
     def __init__(self, name, age, is_student):
         self.name = name
@@ -15,10 +14,11 @@ class CustomObject:
         self.is_student = is_student
 
     def display(self):
-        print(f"Name: {self.name}\nAge: {self.age}\nIs_Student:
-              {self.is_student}")
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Is Student: {self.is_student}")
 
-    def serialize(self, filename: str):
+    def serialize(self, filename):
         try:
             with open(filename, 'wb') as file:
                 pickle.dump(self, file)
@@ -27,10 +27,13 @@ class CustomObject:
             return None
 
     @classmethod
-    def deserialize(cls, filename: str):
+    def deserialize(cls, filename):
         try:
             with open(filename, 'rb') as file:
                 return pickle.load(file)
-        except (FileNotFoundError, pickle.PickleError, EOFError) as e:
+        except FileNotFoundError:
+            print(f"File {filename} not found.")
+            return None
+        except Exception as e:
             print(f"Error deserializing object: {e}")
             return None
