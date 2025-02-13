@@ -25,10 +25,6 @@ class CustomObject:
         with open(filename, "w", encosding= "UTF-8") as file:
             pickle.dump(self, file)
         
-        with open(filename, "r", encosding="UTF-8") as file:
-
-            return pickle.load(self)
-        
     @classmethod 
     def deserialize(cls, filename):
         """
