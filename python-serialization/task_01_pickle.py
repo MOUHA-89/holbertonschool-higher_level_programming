@@ -6,6 +6,9 @@ import pickle
 
 
 class CustomObject:
+    """
+    this is a class
+    """
     def __init__(self, name: str, age: int, is_student: bool):
         self.name = name
         self.age = age
