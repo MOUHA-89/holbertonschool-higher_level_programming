@@ -1,13 +1,8 @@
 #!/usr/bin/python3
-"""
-python program
-"""
 import pickle
 
+
 class CustomObject:
-    """
-    this is a class
-    """
     def __init__(self, name, age, is_student):
         self.name = name
         self.age = age
@@ -19,18 +14,20 @@ class CustomObject:
         print(f"is_student: {self.is_student}")
 
     def serialize(self, filename):
-        """
-        method to print out the object’s attributes
-        """
-        with open(filename, "w", encosding= "UTF-8") as file:
-            pickle.dump(self, file)
-        
-    @classmethod 
-    def deserialize(cls, filename):
-        """
-        This class method will take a filename as its parameter
-        """
+        try:
+            with open(filename, "w", encoding="UTF-8") as file:
+                pickle.dump(self, file)
 
-        with open(filename, "r", encoding="UTF-8") as file:
-            
-            return pickle.load(file)
+        except Exception as e:
+            print(f"Error serializing object: {e}")
+            return None
+
+    @classmethod
+    def deserialize(cls, filename):
+        try:
+            with open(filename, "r", encoding="UTF-8") as file:
+                pickle.load(file)
+
+        except Exception as e:
+            print(f"Error deserializing object:{e}")
+            return None
