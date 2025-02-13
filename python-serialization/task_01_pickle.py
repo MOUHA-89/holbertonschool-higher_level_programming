@@ -1,8 +1,14 @@
 #!/usr/bin/python3
+"""
+python program
+"""
 import pickle
 
 
 class CustomObject:
+    """
+    this is a class
+    """
     def __init__(self, name, age, is_student):
         self.name = name
         self.age = age
