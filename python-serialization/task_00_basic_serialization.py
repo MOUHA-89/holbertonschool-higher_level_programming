@@ -17,4 +17,4 @@ def load_and_deserialize(filename):
     deserialize the JSON file to recreate the Python Dictionary.
     """
     with open(filename, 'r', encoding= "UTF-8") as file:
-             json.load(file)
+             return json.load(file)
