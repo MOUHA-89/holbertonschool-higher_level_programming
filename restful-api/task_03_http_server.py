@@ -31,7 +31,3 @@ def run_server(port=8000):
     httpd = HTTPServer(server_address, SimpleAPIHandler)
     print(f"Server running on port {port}")
     httpd.serve_forever()
-
-
-if __name__ == '__main__':
-    run_server()
