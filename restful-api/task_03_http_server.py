@@ -1,33 +1,37 @@
 #!/usr/bin/python3
-import http.server
+
+from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
-from http import HTTPStatus
 
 
-class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
+class SimpleAPIHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
-            self.send_response(HTTPStatus.OK)
+            self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"Hello, this is a simple API!")
+            self.wfile.write("Hello, this is a simple API!".encode())
         elif self.path == '/data':
-            data = {"name": "John", "age": 30, "city": "New York"}
-            self.send_response(HTTPStatus.OK)
+            self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
+            data = {"name": "John", "age": 30, "city": "New York"}
             self.wfile.write(json.dumps(data).encode())
         elif self.path == '/status':
-            self.send_response(HTTPStatus.OK)
+            self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"OK")
+            self.wfile.write("OK".encode())
         else:
-            self.send_error(HTTPStatus.NOT_FOUND, "Endpoint not found")
+            self.send_error(404, "Endpoint not found")
+
+
+def run_server(port=8000):
+    server_address = ('', port)
+    httpd = HTTPServer(server_address, SimpleAPIHandler)
+    print(f"Server running on port {port}")
+    httpd.serve_forever()
 
 
 if __name__ == '__main__':
-    server_address = ('', 8000)
-    httpd = http.server.HTTPServer(server_address, SimpleAPIHandler)
-    print("Server running on port 8000")
-    httpd.serve_forever()
+    run_server()
