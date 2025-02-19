@@ -3,6 +3,7 @@ import http.server
 import json
 from http import HTTPStatus
 
+
 class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
@@ -23,6 +24,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(b"OK")
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Endpoint not found")
+
 
 if __name__ == '__main__':
     server_address = ('', 8000)
