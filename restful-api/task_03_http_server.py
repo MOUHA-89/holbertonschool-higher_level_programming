@@ -1,40 +1,39 @@
 #!/usr/bin/python3
+from http.server import HTTPServer, BaseHTTPRequestHandler
 import http.server
-import socketserver
 import json
-from urllib.parse import urlparse
-PORT = 8000
+port = 8080
+Handler = http.server.SimpleHTTPRequestHandler
 
 
-class MyHandler(http.server.BaseHTTPRequestHandler):
+class SimpleAPIHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        parsed_url = urlparse(self.path)
-        path = parsed_url.path
-        if path == "/":
+        if self.path == '/':
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"Hello, this is a simple API!")
-        elif path == "/data":
+        elif self.path == '/data':
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
-            json_data = json.dumps(data)
-            self.wfile.write(json_data.encode("utf-8"))
-        elif path == "/status":
+            self.wfile.write(json.dumps(data).encode())
+        elif self.path == '/status':
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"OK")
         else:
-            self.send_response(404)
-            self.send_header("Content-type", "text/plain")
-            self.end_headers()
-            self.wfile.write(b"Endpoint not found")
+            self.send_error(404, "Endpoint not found")
 
 
-Handler = MyHandler
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("serving at port", PORT)
+def run_server(port=8000):
+    server_address = ('', port)
+    httpd = HTTPServer(server_address, SimpleAPIHandler)
+    print(f"Server running on port {port}")
     httpd.serve_forever()
+
+
+if __name__ == '__main__':
+    run_server()
