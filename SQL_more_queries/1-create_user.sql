@@ -1,8 +1,8 @@
--- Créer l'utilisateur user_0d_1 s'il n'existe pas
+-- Check if the user already exists; if not, create the user
 CREATE USER IF NOT EXISTS 'user_0d_1'@'%' IDENTIFIED BY 'user_0d_1_pwd';
 
--- Accorder tous les privilèges à user_0d_1 sur l'ensemble du serveur MySQL
+-- Grant all privileges on the MySQL server
 GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'%' WITH GRANT OPTION;
 
--- Appliquer les modifications de privilèges immédiatement
+-- Apply the changes
 FLUSH PRIVILEGES;
