@@ -1,5 +1,5 @@
 -- create database
-CREATE DATABASE hbtn_0d_usa;
+CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
 -- Use database
 USE hbtn_0d_usa;
 -- create table
