@@ -1,8 +1,6 @@
---  city table
-SELECT city.name
--- city concerning
-FROM city
--- link cities
-JOIN state ON city.state_id = state.id
--- state table
-WHERE state.name = 'california';
+-- Sélectionne le nom des villes depuis la table 'city'
+SELECT cities.id, cities.name
+FROM cities
+JOIN states ON cities.state_id = states.id
+WHERE states.name = 'California'
+ORDER BY cities.id ASC;
