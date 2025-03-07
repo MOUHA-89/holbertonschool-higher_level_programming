@@ -1,12 +1,6 @@
 #!/usr/bin/python3
 """
 This script lists all states from the database hbtn_0e_0_usa.
-
-Usage:
-    ./script.py <mysql_username> <mysql_password> <database_name>
-
-It connects to a MySQL database, retrieves all records from the `states` table,
-and displays them in ascending order by `id`.
 """
 import MySQLdb
 import sys
