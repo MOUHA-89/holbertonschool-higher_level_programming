@@ -9,7 +9,7 @@ if __name__ == "__main__":
                          passwd=sys.argv[2],
                          database=sys.argv[3])
     cur = db.cursor()
-    cur.execute("SELECT cities.`id`, cities.`name`, states.`name` FROM cities "
+    cur.execute("SELECT cities.`id`, cities.`name`, states.`name` FROM cities"
                 "JOIN states ON states.`id` = cities.`state_id` "
                 "ORDER BY cities.`id` ASC")
     for row in cur.fetchall():
