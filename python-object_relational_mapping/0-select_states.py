@@ -1,27 +1,38 @@
 #!/usr/bin/python3
-""""
-lists all states from the database hbtn_0e_0_usa"
+"""
+This script lists all states from the database hbtn_0e_0_usa.
+
+Usage:
+    ./script.py <mysql_username> <mysql_password> <database_name>
+
+It connects to a MySQL database, retrieves all records from the `states` table,
+and displays them in ascending order by `id`.
 """
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    username = sys.arg[1]
-    password = sys.arg[2]
-    database = sys.arg[3]
+    # Retrieve MySQL credentials from command-line arguments
+    username = sys.argv[1]  # MySQL username
+    password = sys.argv[2]  # MySQL password
+    database = sys.argv[3]  # Database name
 
+    # Establish connection to MySQL server
     db = MySQLdb.connect(
-        host="localhost",
-        user=username,
-        passwd=password,
-        db=database
+        host="localhost",  # Database server address (localhost)
+        user=username,       # Username provided as argument
+        passwd=password,     # Password provided as argument
+        db=database          # Database name provided as argument
     )
-    cursor = db.cursor()
+    cursor = db.cursor()  # Create a cursor object to interact with the database
 
+    # Execute SQL query to retrieve all states, ordered by id
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
+    # Fetch and display all records
     for state in cursor.fetchall():
         print(state)
-
-        cursor.close()
-        db.close()
+    
+    # Close the cursor and database connection to free resources
+    cursor.close()
+    db.close()
