@@ -1,32 +1,17 @@
 #!/usr/bin/python3
-""" Prevent SQL Injection """
-
-from sys import argv
+"""  lists all states from the database hbtn_0e_0_usa """
 import MySQLdb
+import sys
+
 
 if __name__ == "__main__":
-    username = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-    state_name = argv[4]
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=username,
-                         passwd=password,
-                         db=db_name)
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
     cur = db.cursor()
-
-    query = """
-    SELECT states.id, name FROM states WHERE name = %s
-    COLLATE latin1_general_cs
-    ORDER BY states.id ASC;
-    """
-
-    cur.execute(query, (state_name, ))
-
+    match = sys.argv[4]
+    cur.execute("SELECT * FROM states WHERE name LIKE %s", (match, ))
     rows = cur.fetchall()
     for row in rows:
         print(row)
-
     cur.close()
     db.close()
