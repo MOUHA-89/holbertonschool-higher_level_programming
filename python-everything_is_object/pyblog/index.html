@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Python Objects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          <span class="logo-text">PyBlogger</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Articles</a>
+          <a href="#" class="nav-link">About</a>
+          <a href="#" class="nav-link">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <div class="content">
+        <article class="article">
+          <div class="article-header">
+            <h1>Understanding Python's Mutable and Immutable Objects</h1>
+            <div class="article-meta">
+              <span>Published on May 10, 2025</span>
+              <span>•</span>
+              <span>10 min read</span>
+            </div>
+            <img 
+              src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+              alt="Python programming"
+              class="article-image"
+            >
+          </div>
+
+          <section id="introduction" class="section">
+            <h2>Introduction</h2>
+            <p>Python's handling of objects is one of its most fundamental aspects that affects how we write and debug code. Understanding the difference between mutable and immutable objects is crucial for writing efficient and bug-free Python code. This blog post will explore the concepts of object identity, type, mutability, and how Python passes arguments to functions.</p>
+            <p>We'll dive deep into how Python manages memory and references, how it affects your code's behavior, and what pitfalls to avoid. By the end, you'll have a clearer understanding of why some objects can be modified in place while others cannot, and how this impacts your programming approach.</p>
+          </section>
+
+          <section id="id-and-type" class="section">
+            <h2>ID and Type</h2>
+            <p>In Python, every object has an identity, a type, and a value. The identity of an object is its memory address, which can be obtained using the id() function. This identity never changes during the lifetime of the object. The type determines what operations can be performed on the object and what values it can hold.</p>
+            <p>Understanding an object's identity and type is fundamental to understanding how Python handles objects in memory and how it affects your code.</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span>python</span>
+                <button class="copy-button">Copy code</button>
+              </div>
+              <pre><code># Examining object identity and type
+
+a = 42
+b = 42
+c = a
+
+print(f"a: {a}, id(a): {id(a)}, type(a): {type(a)}")
+print(f"b: {b}, id(b): {id(b)}, type(b): {type(b)}")
+print(f"c: {c}, id(c): {id(c)}, type(c): {type(c)}")
+
+# Check if objects are the same
+print(f"a is b: {a is b}")
+print(f"a is c: {a is c}")</code></pre>
+              <div class="code-output">
+                <div class="output-header">Output</div>
+                <pre><code>a: 42, id(a): 140704497079504, type(a): <class 'int'>
+b: 42, id(b): 140704497079504, type(b): <class 'int'>
+c: 42, id(c): 140704497079504, type(c): <class 'int'>
+a is b: True
+a is c: True</code></pre>
+              </div>
+            </div>
+          </section>
+          <section id="mutable-objects" class="mt-12 scroll-mt-24">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Mutable Objects</h2>
+            <p class="mb-4">
+              Mutable objects are those whose value can be changed after creation. When you modify a 
+              mutable object, its identity remains the same, but its contents change. In Python, the 
+              most common mutable objects are:
+            </p>
+            <ul class="list-disc pl-6 mb-4">
+              <li>Lists</li>
+              <li>Dictionary</li>
+              <li>Set</li>
+              <li>User-defined classes (by default)</li>
+            </ul>
+            <p className="mb-4">
+              Let's look at how modifying a list impacts its identity:
+            </p>
+            <div class="code-block">
+              <pre><code>
+            
+              code={`# Demonstrating list mutability
+my_list = [1, 2, 3]
+print(f"Original list: {my_list}")
+print(f"List ID: {id(my_list)}")
+
+# Modify the list
+my_list.append(4)
+print(f"Modified list: {my_list}")
+print(f"List ID after modification: {id(my_list)}")
+
+# Compare with reassignment
+my_list = [5, 6, 7]
+print(f"Reassigned list: {my_list}")
+print(f"List ID after reassignment: {id(my_list)}")`} 
+                output={`Original list: [1, 2, 3]
+List ID: 140716433952128
+Modified list: [1, 2, 3, 4]
+List ID after modification: 140716433952128
+Reassigned list: [5, 6, 7]
+List ID after reassignment: 140716434407552`} 
+              </pre></code>
+              </div> 
+              <p>
+                Notice that when we modify <code>my_list</code> using <code>append()</code>, the ID remains unchanged. 
+                However, when we reassign <code>my_list</code> to a new list, the ID changes because we're now 
+                referencing a completely different object in memory.
+              </p>
+
+          </section>
+          <section id="immutable-objects" class="mt-12 scroll-mt-24">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Immutable Objects</h2>
+            <p class="mb-4">
+              Immutable objects, on the other hand, cannot be changed after creation. If you "modify" an 
+                immutable object, Python actually creates a new object with the updated value. Common 
+                immutable objects in Python include:
+            </p>
+            <ul class="list-disc pl-6 mb-4">
+              <li>Numbers (int, float, complex)</li>
+              <li>Strings</li>
+              <li>Tuples</li>
+              <li>Frozen sets</li>
+              <li>Booleans</li>
+            </ul>
+            <p class="mb-4">
+              Let's examine strings to understand immutability:
+            </p>
+            <div class="code-block">
+            <pre><code>
+                code={`# Demonstrating string immutability
+text = "Hello"
+print(f"Original string: {text}")
+print(f"String ID: {id(text)}")
+
+# "Modify" the string (actually creates a new object)
+text = text + " World"
+print(f"Modified string: {text}")
+print(f"String ID after modification: {id(text)}")
+
+# String methods always return new strings
+greeting = "Hello"
+shouted = greeting.upper()
+print(f"Original: {greeting} (ID: {id(greeting)})")
+print(f"Uppercase: {shouted} (ID: {id(shouted)})")`} 
+                output={`Original string: Hello
+String ID: 140716434301360
+Modified string: Hello World
+String ID after modification: 140716434398000
+Original: Hello (ID: 140716434301360)
+Uppercase: HELLO (ID: 140716434397872)`} 
+                </code></pre>
+                </div>
+              <p>
+                As you can see, when we "modify" the string by concatenating " World" to it, a completely 
+                new string object is created with a different ID. Similarly, when we call the <code>upper()</code> method, 
+                it returns a new string rather than modifying the original.
+              </p>
+          </section>
+          <section id="why-it-matters" class="mt-12 scroll-mt-24">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Why It Matters and How Python Treats Different Objects</h2>
+            <p class="mb-4">
+              Understanding mutability is crucial for several reasons:
+            </p>
+            
+            <h3 class="text-xl font-semibold mt-6 mb-3">1. Memory Management</h3>
+            <p class="mb-4">
+              Python handles memory differently for mutable and immutable objects. Since immutable objects 
+              can't change, Python can optimize by reusing objects with the same value (as we saw with integers). 
+              For mutable objects, each instance is unique even if the content is identical.
+            </p>
+            <div class="code-block">
+            <pre><code> 
+                code={`# Memory optimization with immutable objects
+a = 42
+b = 42
+print(f"Are a and b the same object? {a is b}")  # Often True for small integers
+
+# No optimization for mutable objects
+list1 = [1, 2, 3]
+list2 = [1, 2, 3]
+print(f"Are list1 and list2 the same object? {list1 is list2}")  # Always False`} 
+                output={`Are a and b the same object? True
+Are list1 and list2 the same object? False`} 
+                </code></pre>
+                </div>
+              <h3 class="text-xl font-semibold mt-6 mb-3">2. Hashability and Use as Dictionary Keys</h3>
+              <p class="mb-4">
+                Only immutable objects can be used as dictionary keys or set elements. This is because these 
+                data structures rely on hash values that must remain constant throughout an object's lifetime. 
+                If a mutable object could change its value, its hash would change, making it impossible to 
+                retrieve the associated value.
+              </p>
+              <div class="code-block">
+              <pre><code>
+              code={`# Hashability demonstration
+# This works fine (immutable objects as keys)
+my_dict = {(1, 2): "tuple key", "string key": 42}
+print(my_dict)
+
+# This raises TypeError (mutable object as key)
+try:
+  bad_dict = {[1, 2]: "list key"}
+  print(bad_dict)
+except TypeError as e:
+  print(f"Error: {e}")`} 
+              output={`{(1, 2): 'tuple key', 'string key': 42}
+Error: unhashable type: 'list'`} 
+            
+            </code></pre>
+            </div>
+            <h3 className="text-xl font-semibold mt-6 mb-3">3. Performance Implications</h3>
+              <p>
+                Operations on mutable objects can be more efficient when you need to make many changes, 
+                as you're modifying a single object rather than creating new ones repeatedly. However, 
+                this comes with the risk of unintended side effects if you're not careful about when and how 
+                you modify objects.
+              </p>
+              </section>
+              <section id="function-arguments" class="mt-12 scroll-mt-24">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                  How Arguments Are Passed to Functions
+                </h2>
+                <p class="mb-4">
+                  Understanding how Python passes arguments to functions is critical, especially when dealing 
+                  with mutable and immutable objects. Python uses a mechanism called "pass by object reference" 
+                  or "pass by assignment."
+                </p>
+                <p class="mb-4">
+                  When you pass an argument to a function, Python passes a reference to the object, not the 
+                  object itself. The parameter becomes a new reference to the same object. The implications 
+                  differ for mutable and immutable objects:
+                </p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">For Immutable Objects:</h3>
+                <p class="mb-4">
+                  Since immutable objects can't be modified, functions can't change the original object. 
+                  Any "modification" creates a new object, leaving the original unchanged.
+                </p>
+                <div class="code-block">
+                <pre><code> 
+                  code={`def try_to_modify_string(s):
+      print(f"Inside function, initial: {s} (ID: {id(s)})")
+      s = s + " modified"
+      print(f"Inside function, after modification: {s} (ID: {id(s)})")
+  
+  original = "Hello"
+  print(f"Before function call: {original} (ID: {id(original)})")
+  try_to_modify_string(original)
+  print(f"After function call: {original} (ID: {id(original)})")`} 
+                  output={`Before function call: Hello (ID: 140716434301360)
+  Inside function, initial: Hello (ID: 140716434301360)
+  Inside function, after modification: Hello modified (ID: 140716434398320)
+  After function call: Hello (ID: 140716434301360)`} 
+                </code></pre>
+              </div>
+                
+                <p class="mb-4">
+                  The function received a reference to the same string object. When it attempted to modify the 
+                  string, Python created a new string object, which was only accessible within the function's scope. 
+                  The original string remained unchanged.
+                </p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">For Mutable Objects:</h3>
+                <p class="mb-4">
+                  Functions can modify mutable objects in place, affecting the original object outside the function.
+                </p>
+                <div class="code-block">
+                <pre><code> 
+                  code={`def modify_list(lst):
+      print(f"Inside function, initial: {lst} (ID: {id(lst)})")
+      lst.append(4)
+      print(f"Inside function, after modification: {lst} (ID: {id(lst)})")
+  
+  my_list = [1, 2, 3]
+  print(f"Before function call: {my_list} (ID: {id(my_list)})")
+  modify_list(my_list)
+  print(f"After function call: {my_list} (ID: {id(my_list)})")`} 
+                  output={`Before function call: [1, 2, 3] (ID: 140716434407168)
+  Inside function, initial: [1, 2, 3] (ID: 140716434407168)
+  Inside function, after modification: [1, 2, 3, 4] (ID: 140716434407168)
+  After function call: [1, 2, 3, 4] (ID: 140716434407168)`} 
+                </code></pre>
+                </div>
+                
+                <p class="mb-4">
+                  Here, the function received a reference to the same list object. When it modified the list 
+                  using <code>append()</code>, it altered the original list object, which was visible after the function returned.
+                </p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Reassignment Within Functions:</h3>
+                <p class="mb-4">
+                  It's important to distinguish between modifying an object and reassigning a variable. 
+                  Reassignment creates a new reference and doesn't affect the original object:
+                </p>
+                <div class="code-block">
+                <pre><code> 
+                  code={`def reassign_list(lst):
+      print(f"Inside function, initial: {lst} (ID: {id(lst)})")
+      lst = [5, 6, 7]  # Creates a new list
+      print(f"Inside function, after reassignment: {lst} (ID: {id(lst)})")
+  
+  my_list = [1, 2, 3]
+  print(f"Before function call: {my_list} (ID: {id(my_list)})")
+  reassign_list(my_list)
+  print(f"After function call: {my_list} (ID: {id(my_list)})")`} 
+                  output={`Before function call: [1, 2, 3] (ID: 140716434407168)
+  Inside function, initial: [1, 2, 3] (ID: 140716434407168)
+  Inside function, after reassignment: [5, 6, 7] (ID: 140716434407616)
+  After function call: [1, 2, 3] (ID: 140716434407168)`} 
+                </code></pre>
+                </div>
+                
+                <p class="mb-6">
+                  In this example, the reassignment operation inside the function created a new list object 
+                  and made the variable <code>lst</code> reference this new object. The original list remained unchanged.
+                </p>
+                
+                <div class="p-6 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                  <h3 class="text-xl font-semibold mb-3 text-blue-800 dark:text-blue-300">Key Takeaways:</h3>
+                  <ul class="list-disc pl-6 space-y-2 text-blue-800 dark:text-blue-300">
+                    <li>Python passes references to objects, not copies of objects.</li>
+                    <li>Immutable objects can't be modified in-place, so functions can't change the original.</li>
+                    <li>Mutable objects can be modified in-place, affecting the original object outside the function.</li>
+                    <li>Reassigning a parameter within a function doesn't affect the original object outside.</li>
+                    <li>Be especially careful with mutable default arguments in function definitions!</li>
+                  </ul>
+                </div>
+              </section>
+              <section class="mt-12">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Conclusion</h2>
+                <p class="mb-4">
+                  Understanding the distinction between mutable and immutable objects is fundamental to 
+                  writing effective Python code. This knowledge helps predict how your code will behave, 
+                  avoid common bugs, and make appropriate design decisions.
+                </p>
+                <p>
+                  By keeping these concepts in mind, you'll be better equipped to write clean, efficient, 
+                  and bug-free Python code that properly leverages the language's object model.
+                </p>
+              </section>
+            </article>
+          </div>
+          
+          <aside class="lg:col-span-1">
+            <SectionNavigation sections={sections} />
+          </aside>
+        </div>
+      </div>
+
+          <!-- Additional sections follow the same pattern -->
+        </article>
+
+        <aside class="table-of-contents">
+          <div class="toc-container">
+            <h3>Table of Contents</h3>
+            <nav>
+              <ul>
+                <li><a href="#introduction" class="active">Introduction</a></li>
+                <li><a href="#id-and-type">ID and Type</a></li>
+                <li><a href="#mutable-objects">Mutable Objects</a></li>
+                <li><a href="#immutable-objects">Immutable Objects</a></li>
+                <li><a href="#why-it-matters">Why It Matters</a></li>
+                <li><a href="#function-arguments">Function Arguments</a></li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2025 PyBlogger. All rights reserved.</p>
+        <div class="footer-love">
+          <span>Made with</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="heart-icon">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>by PyBlogger</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
